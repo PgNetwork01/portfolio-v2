@@ -335,7 +335,6 @@ h2 {
   box-sizing: border-box;
   padding: 5px;
   cursor: pointer;
-  transform: rotateY(-60deg);
   transition: .6s;
   overflow: hidden;
   border: 1px solid #4c0bff;
@@ -348,16 +347,9 @@ h2 {
   height: auto;
 }
 
-.slider li:nth-child(4) {
+.slider li:nth-child(1) {
   width: 300px;
-  transform: rotateY(0);
   transition: .6s;
-}
-
-.slider li:nth-child(1),
-.slider li:nth-child(2),
-.slider li:nth-child(3) {
-  transform: rotateY(60deg);
 }
 
 .sliderControl {
@@ -376,7 +368,7 @@ h2 {
   transition: .6s;
 }
 
-.sliderControl a:nth-child(4) {
+.sliderControl a:nth-child(1) {
   background-color: #4c0bff;
 }
 
@@ -445,6 +437,8 @@ h2 {
   border-left: 10px solid #4c0bff8a;
   border-top: 10px solid #4c0bff8a;
   border-bottom: 10px solid #4c0bff8a;
+  margin-bottom: 3px;
+  border-radius: 50%;
 }
 
 .gogo {

@@ -8,92 +8,65 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-
-// Add dynamic floating objects
-const container = document.querySelector('.floating-objects');
-
-function createObject() {
-    const obj = document.createElement('div');
-    const size = Math.random() * 100 + 50; // Random size between 50px and 150px
-    obj.style.width = `${size}px`;
-    obj.style.height = `${size}px`;
-
-    // Random position
-    obj.style.top = `${Math.random() * 100}vh`;
-    obj.style.left = `${Math.random() * 100}vw`;
-
-    // Random color
-    const colors = ['#FF6347', '#40E0D0', '#FFD700', '#9370DB', '#32CD32'];
-    obj.style.background = colors[Math.floor(Math.random() * colors.length)];
-    obj.style.opacity = Math.random() * 0.6 + 0.4;
-
-    // Random shape
-    const shape = Math.random() > 0.5 ? 'circle' : 'square';
-    obj.classList.add(shape);
-
-    container.appendChild(obj);
-
-    // Remove objects after animation
-    setTimeout(() => {
-        obj.remove();
-    }, 15000);
-}
-
-// Generate multiple objects
-setInterval(createObject, 2000);
-
-$(function(){
-
+$(function () {
     var sliderWidth = $('.slider').width();
-    var nowLi = 3;
+    var nowLi = 0;
     var li_count = $('.slider li').length;
-    
-    $('.slider ul').css({width:li_count * sliderWidth});
-    $('.slider li').css({width:sliderWidth});
-    
-    for(var i=0; i<li_count;i++){
+
+    // Fixed width for all slider items and container
+    $('.slider li').css({
+        width: sliderWidth,
+        boxSizing: 'border-box'  // Prevents border/padding affecting the width
+    });
+
+    $('.slider ul').css({
+        width: sliderWidth * li_count,  // Fixed total width
+        position: 'relative',
+        left: -(nowLi * sliderWidth) + 'px'  // Start at the correct position
+    });
+
+    // Create control buttons
+    for (var i = 0; i < li_count; i++) {
         $('.sliderControl').append('<a></a>');
     }
-    
-    
-    $('.sliderControl a, .slider li').click(function(){
+
+    $('.sliderControl a, .slider li').click(function () {
         nowLi = $(this).index();
         sliderChange();
-        $('.sliderControl a').eq(nowLi).css({'background-color':'#4c0bff'});
-        $('.sliderControl a').eq(nowLi).siblings().css({'background-color':'#333'});
-        $('.slider li').eq(nowLi).css({'transform':'rotateY(0)'});
-        $('.slider li').eq(nowLi).prevAll().css({'transform':'rotateY(60deg)'});
-        $('.slider li').eq(nowLi).nextAll().css({'transform':'rotateY(-60deg)'});
-        $('.slider li').eq(0).css({'left':'-60px'});
-    })
-    
-    
-    function sliderChange(){
-        $('.slider ul').stop(true, false).animate({left: sliderWidth * nowLi * -1}, 500);
+        updateControls();
+    });
+
+    function sliderChange() {
+        $('.slider ul').stop(true, false).animate({
+            left: -(nowLi * sliderWidth) + 'px'
+        }, 500);
     }
-    
+
+    function updateControls() {
+        $('.sliderControl a').eq(nowLi).css({ 'background-color': '#4c0bff' });
+        $('.sliderControl a').eq(nowLi).siblings().css({ 'background-color': '#333' });
+    }
+
     var timer = setInterval(perpic, 5000);
-    
-    function perpic(){		
-        console.log( 'nowLi = ' + nowLi)
+
+    function perpic() {
+        console.log('nowLi = ' + nowLi);
         nowLi++;
-        if(nowLi>=li_count){
-            nowLi=0;
-        };
+        if (nowLi >= li_count) {
+            nowLi = 0;
+        }
         sliderChange();
-        $('.sliderControl a').eq(nowLi).css({'background-color':'#4c0bff'});
-        $('.sliderControl a').eq(nowLi).siblings().css({'background-color':'#333'});
-        $('.slider li').eq(nowLi).css({'transform':'rotateY(0)'});
-        $('.slider li').eq(nowLi).prevAll().css({'transform':'rotateY(60deg)'});
-        $('.slider li').eq(nowLi).nextAll().css({'transform':'rotateY(-60deg)'});
+        updateControls();
     }
-    
-    $('.slider').hover(function(){
+
+    $('.slider').hover(function () {
         clearInterval(timer);
-        $('.timer .percentage').removeClass('gogo');
-    },function(){
+        $('.timer .percentage').removeClass('gogo');  // Remove 'gogo' on hover
+    }, function () {
         timer = setInterval(perpic, 5000);
-        $('.timer .percentage').addClass('gogo');
-    })
-    
-    })
+        $('.timer .percentage').addClass('gogo');  // Add 'gogo' after hover
+    });
+
+    // Initialize controls on page load
+    updateControls();
+});
