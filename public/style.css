@@ -182,24 +182,10 @@ h2 {
   border-radius: 12px;
   transition: 0.3s;
   border: 1px solid #4c0bffa6;
-}
-
-.docs-card {
-  background: transparent;
-  padding: 20px;
-  border-radius: 12px;
-  transition: 0.3s;
-  min-height: 480px;
-}
-
-.docs-card p {
-  font-size: 15px;
-  margin-bottom: 1rem;
-}
-
-.docs-card h2 {
-  font-size: 2rem;
-  margin-bottom: 0;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .project-card p {
