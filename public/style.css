@@ -98,7 +98,7 @@ h2 {
   min-width: 126px;
 }
 
-.skill img {
+.skill img, .contact-links img, .connections-container img {
   width: 30px;
   margin-right: 10px;
   filter: invert(1);
@@ -284,6 +284,9 @@ h2 {
   min-width: 178px;
   border-radius: 12px;
   /* box-shadow: 0px 0px 5px 0px #4c0bff; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .connections-container a:hover {
