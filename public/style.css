@@ -185,6 +185,15 @@ h2 {
   padding-top: 10rem;
 }
 
+.project-card.cmc-guides {
+  background: url('assets/cmc-guides-banner.png');
+    background-repeat: repeat;
+    background-size: auto;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding-top: 10rem;
+}
+
 .project-card {
   background: transparent;
   padding: 20px;
