@@ -98,6 +98,12 @@ h2 {
   min-width: 126px;
 }
 
+.skill img {
+  width: 30px;
+  margin-right: 10px;
+  filter: invert(1);
+}
+
 .skill:hover {
   transform: scale(1.1);
   background: #fff;
