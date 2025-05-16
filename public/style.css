@@ -105,12 +105,9 @@ h2 {
 }
 
 .skill:hover {
-  transform: scale(1.1);
-  background: #fff;
-  color: #000;
+  transform: scale(1.06);
+  background: #4c0bffa6;
   border: none;
-  box-shadow: 5px 5px 0px 0px #1a1a1a, 7px 7px 0px 0px #fff;
-
 }
 
 /* GitHub Stats */
